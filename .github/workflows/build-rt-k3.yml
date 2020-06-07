@@ -57,6 +57,7 @@ jobs:
 
       - name: Clone source code
         run: |
+          git clone https://github.com/RMerl/asuswrt-merlin
           git clone https://github.com/ghostnup/asuswrt-merlin.ng
           git clone https://github.com/ghostnup/k3screenctrl asuswrt-merlin.ng/release/src/router/k3screenctrl 
           git clone https://github.com/RMerl/am-toolchains.git
@@ -71,13 +72,13 @@ jobs:
           #ls -A asuswrt-merlin.ng/release/src/router
 
           #echo "print dir brcm-arm"
-          #ls -A asuswrt-merlin.ng/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/bin
+          #ls -A asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3/bin
 
       - name: Build Firmware
         run: |
           sudo ln -s $(pwd)/am-toolchains/brcm-arm-hnd /opt/toolchains
-          sudo ln -s $(pwd)/asuswrt-merlin.ng/tools/brcm /opt/brcm
-          sudo ln -s $(pwd)/asuswrt-merlin.ng/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 /opt/brcm-arm
+          sudo ln -s $(pwd)/asuswrt-merlin/tools/brcm /opt/brcm
+          sudo ln -s $(pwd)/asuswrt-merlin/release/src-rt-6.x.4708/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 /opt/brcm-arm
           export PATH=$PATH:/opt/brcm/hndtools-mipsel-linux/bin:/opt/brcm/hndtools-mipsel-uclibc/bin:/opt/brcm-arm/bin
           sudo ln -sf bash /bin/sh
           echo "export LD_LIBRARY_PATH=$LD_LIBRARY:/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/lib" >> ~/.profile
@@ -85,7 +86,7 @@ jobs:
           echo "PATH=\$PATH:/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/bin" >> ~/.profile
           echo "PATH=\$PATH:/opt/toolchains/crosstools-aarch64-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/bin" >> ~/.profile
 
-          #sudo ln -s $(pwd)/asuswrt-merlin.ng /media/asuswrt/asuswrt-merlin.ng
+          #sudo ln -s $(pwd)/asuswrt-merlin /media/asuswrt/asuswrt-merlin
           sudo ln -s $(pwd)/asuswrt-merlin.ng /media/asuswrt/asuswrt-merlin.ng
           cd /media/asuswrt/asuswrt-merlin.ng/release/src-rt-7.14.114.x/src
 
